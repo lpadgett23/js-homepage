@@ -24,22 +24,38 @@
 }
 
 :root {
-  --bg:           #f7f9fc;
-  --bg-alt:       #edf4f8;
-  --text:         #1a2e3b;
-  --text-muted:   #5a7a8a;
-  --accent:       #0077b6;
-  --accent-hover: #005f8e;
-  --accent-light: #daeef7;
-  --border:       #cde0ed;
+  /* backgrounds */
+  --bg:           #ffffff;
+  --bg-alt: #f5b027;
+  /* --bg-alt:       #f2ede6; */
+  /* typography */
+  --text:         #252525;
+  --text-muted:   #716d69;
+  /* primary accent: vermillion */
+  --accent:       #f54927;
+  --accent-hover: #d93517;
+  --accent-light: #ffe5dd;
+  /* addtl accents */
+  --accent-gold: #f5b027;
+  --accent-pink: #f5276c;
+  --accent-blue: #27d3f5;
 
+  /* borders */
+  --border:       #ded8d0;
+
+  /* fonts */
   --font-serif: 'Lora', Georgia, serif;
   --font-mono:  'DM Mono', 'Courier New', monospace;
   --font-sans:  'Inter', system-ui, sans-serif;
+  /* --font-serif: 'Lora', Georgia, serif;
+  --font-mono:  'DM Mono', 'Courier New', monospace;
+  --font-sans:  'Inter', system-ui, sans-serif; */
 
   --max-w:       960px;
   --section-pad: 6rem 1.5rem;
 }
+
+/* #f54927 vermillion, #f5b027 gold, #f5276c pink, #27d3f5 pool blue */
 
 html {
   scroll-behavior: smooth;
@@ -532,8 +548,8 @@ footer {
   height: 500px;
 
   overflow: hidden;
-  background: #111827;
-  border: 1px solid #444;
+  background: white;
+  /* border: 1px solid #444; */
 }
 
 #particle-playground p {

@@ -1,23 +1,19 @@
 import { Engine } from "./Engine.js";
 import { ParticleSystem } from "./ParticleSystem.js";
 import { FlockSystem } from "./FlockSystem.js";
+import { FallingLinesSystem } from "./FallingLinesSystem.js";
 
 // console.log("MAIN.JS LOADED");
 
-// canvas and its containing section
+// canvas and its containing section --> find the html elements
 const canvas = document.querySelector("#particles");
 const playground = document.querySelector(
     "#particle-playground"
 );
 
 
-//initialize the engine
+//initialize one engine
 const engine = new Engine(canvas);
-
-console.log("Canvas dimensions:", {
-    width: engine.width,
-    height: engine.height
-});
 
 
 // create one persistent flock of boids at page load
@@ -27,18 +23,35 @@ const flock = new FlockSystem(
     150
 );
 
+// create a falling lines sys
+const fallingLines = new FallingLinesSystem(
+    engine.width,
+    engine.height,
+    120
+);
+
+// register both systems with the engine
 engine.add(flock);
+engine.add(fallingLines);
 
+console.log(engine.systems);
 
-// handle browser resizing
+console.log("Canvas dimensions:", {
+    canvasWidth: engine.width,
+    canvasHeight: engine.height, 
+    fallingLinesCount: fallingLines.lines.length
+});
+
+// resize both systems when the canvas changes
 window.addEventListener("resize", () => {
-    engine.resize();-
+    engine.resize();
 
     flock.setBounds(engine.width, engine.height);
+    fallingLines.setBounds(engine.width, engine.height);
 });
 
 
-// create a temporary particle burst on click
+// create a temporary particle burst on clicks
 playground.addEventListener("pointerdown", (event) => {
     // console.log("CLICK DETECTED!");
 
@@ -53,5 +66,5 @@ playground.addEventListener("pointerdown", (event) => {
 });
 
 
-//start the animation
+//start the animation loop
 engine.start();
