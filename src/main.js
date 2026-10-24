@@ -1,13 +1,15 @@
 import { Engine } from "./Engine.js";
 import { ParticleSystem } from "./ParticleSystem.js";
+import { FlockSystem } from "./FlockSystem.js";
 
-console.log("MAIN.JS LOADED");
+// console.log("MAIN.JS LOADED");
 
 // canvas and its containing section
 const canvas = document.querySelector("#particles");
 const playground = document.querySelector(
     "#particle-playground"
 );
+
 
 //initialize the engine
 const engine = new Engine(canvas);
@@ -17,14 +19,28 @@ console.log("Canvas dimensions:", {
     height: engine.height
 });
 
+
+// create one persistent flock of boids at page load
+const flock = new FlockSystem(
+    engine.width,
+    engine.height,
+    150
+);
+
+engine.add(flock);
+
+
 // handle browser resizing
 window.addEventListener("resize", () => {
-    engine.resize();
+    engine.resize();-
+
+    flock.setBounds(engine.width, engine.height);
 });
 
 
+// create a temporary particle burst on click
 playground.addEventListener("pointerdown", (event) => {
-    console.log("CLICK DETECTED!");
+    // console.log("CLICK DETECTED!");
 
     if (!event.isPrimary) return;
 
@@ -35,6 +51,7 @@ playground.addEventListener("pointerdown", (event) => {
 
     engine.add(new ParticleSystem(x, y));
 });
+
 
 //start the animation
 engine.start();
